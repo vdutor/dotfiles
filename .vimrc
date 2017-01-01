@@ -11,6 +11,7 @@ Plugin 'Valloric/YouCompleteMe'
 " Plugin 'altercation/vim-colors-solarized'
 " Plugin 'joshdick/onedark.vim'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'ap/vim-css-color'
 Plugin 'gmarik/vundle'
 Plugin 'nvie/vim-flake8'
 Plugin 'rdnetto/YCM-Generator'
@@ -21,6 +22,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'lervag/vimtex'
+Plugin 'xuhdev/vim-latex-live-preview'
 
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
@@ -47,21 +50,22 @@ let g:ycm_complete_in_strings = 1 " Completion in string
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 let g:ycm_filetype_blacklist = { 'C': 1 }
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'  
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_show_diagnostics_ui = 0
 
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+" Syntastic settings
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 " ----------------
 "  C/C++ settings
 " ----------------
 
-au BufNewFile,BufRead *.cpp,*.h,*.c,*.C
+au BufNewFile,BufRead *.cpp,*.h,*.c,*.C,*.hpp
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
-    \ set textwidth=79 |
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix |
@@ -75,7 +79,6 @@ au BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
-    \ set textwidth=79 |
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix |
@@ -85,6 +88,11 @@ au BufNewFile,BufRead *.py
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
+"
+" Ros launch
+"
+autocmd BufRead,BufNewFile *.launch setfiletype roslaunch
+
 " ----------------
 " general settings
 " ----------------
@@ -93,18 +101,14 @@ nnoremap <Leader>w :w<CR>
 nmap <Leader>o  o<Esc>k
 nmap <Leader>O  O<Esc>j
 
-"let g:solarized_termtrans = 1 
-"let python_highlight_all=1
 syntax on
-" set background=dark
 let g:hybrid_custom_term_colors = 1
 colorscheme hybrid
 set background=dark
 colorscheme hybrid
-"colorscheme onedark
 
-" UTF-8 Support 
-set encoding=utf-8 
+" UTF-8 Support
+set encoding=utf-8
 
 " enable linenumbering
 set nu
@@ -118,19 +122,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-"nnoremap <C-left> :vertical resize -5<cr>
-"nnoremap <C-down> :resize +5<cr>
-"nnoremap <C-up> :resize -5<cr>
-"nnoremap <C-right> :vertical resize +5<cr>
-
 set splitbelow
 set splitright
 
 " searching option
-"/copyright      " Case insensitive
-"/Copyright      " Case sensitive
-"/copyright\C    " Case sensitive
-"/Copyright\c    " Case insensitive
 set ignorecase
 set smartcase
 
@@ -141,12 +136,37 @@ set path+=**
 " Display all matching files when we tab complete
 set wildmenu
 
-" NOW WE CAN:
-" - Hit tab to :find by partial match
-" - Use * to make it fuzzy
-
 " this enables "visual" wrapping
-" set wrap
+set wrap
 
  " this turns off physical line wrapping (ie: automatic insertion of newlines)
 set textwidth=0 wrapmargin=0
+
+" change paranthis matching color
+hi MatchParen cterm=bold ctermbg=none ctermfg=red
+
+" Spelling
+nmap <F5> :setlocal spell spelllang=en_us<CR>
+nmap <F6> :set nospell<CR>
+
+autocmd BufRead,BufNewFile *.md,*.tex setlocal spell spelllang=en_us
+autocmd FileType gitcommit setlocal spell
+set complete+=kspell
+
+" Removes trailing spaces
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+endfunction
+
+set list listchars=trail:.,extends:>
+autocmd FileWritePre * call TrimWhiteSpace()
+autocmd FileAppendPre * call TrimWhiteSpace()
+autocmd FilterWritePre * call TrimWhiteSpace()
+autocmd BufWritePre * call TrimWhiteSpace()
+
+map <F2> :call TrimWhiteSpace()<CR>
+map! <F2> :call TrimWhiteSpace()<CR>
+
+" show traling spaces
+"set list listchars=tab:»·,trail:·
