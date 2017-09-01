@@ -47,8 +47,8 @@ let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language
 let g:ycm_complete_in_comments = 1 " Completion in comments
 let g:ycm_complete_in_strings = 1 " Completion in string
 " let g:ycm_python_binary_path = '/usr/bin/python3'
-let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+let g:ycm_key_list_select_completion = ['<Tab>']
+let g:ycm_key_list_previous_completion = ['<Shift-Tab>']
 let g:ycm_filetype_blacklist = { 'C': 1 }
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_show_diagnostics_ui = 0
@@ -57,34 +57,33 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Syntastic settings
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
+"
+"options for syntastic"
 
-" ----------------
-"  C/C++ settings
-" ----------------
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_python_checkers=['pep8', 'pylint', 'python']
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_error_symbol = "X"
+let g:syntastic_style_error_symbol = ">"
+let g:syntastic_warning_symbol = "!"
+let g:syntastic_style_warning_symbol = ">"
+let g:syntastic_echo_current_error=1
+let g:syntastic_enable_balloons = 1
+let g:syntastic_auto_jump=1
 
-au BufNewFile,BufRead *.cpp,*.h,*.c,*.C,*.hpp
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix |
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set fileformat=unix
 
-" ----------------
-"  Python settings
-" ----------------
 
-" Python Intdent (Pep-8)
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix |
-
-" Flaf unnecessary whitespace for Python
-" define BadWhitespace before using in a match
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
