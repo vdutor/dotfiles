@@ -76,7 +76,7 @@ endif
 " Plugin settings {{{
 
 " NERDTree
-nnoremap <Leader>n :NERDTreeToggle<esc>
+nnoremap <Leader>h :NERDTreeToggle<esc>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeIgnore = ['\.pyc$', '\.hi', '\.o', '\.pdf', '\.taghl', '.ycm_extra_conf.py']
@@ -98,10 +98,8 @@ let g:syntastic_check_on_open=1
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 let g:syntastic_error_symbol = ">>"
-" let g:syntastic_python_checkers=['pep8', 'pylint', 'python']
-" let g:syntastic_python_checkers=['flake8']
-" let g:syntastic_python_python_exec = '/usr/bin/python2'
-let g:syntastic_python_flake8_args='--ignore=E501,F401'
+let g:syntastic_python_checkers=['pylint', 'python']
+let g:syntastic_python_pylint_args = '--rcfile=~/pio_home/pylint.cfg'
 
 " Tagbar
 " nnoremap <silent> <leader>l :TagbarToggle<CR>
