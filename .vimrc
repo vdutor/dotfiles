@@ -10,6 +10,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 " " File explorer
 Plugin 'scrooloose/nerdtree'
+" " Ctrl-p (Fuzzy file search)
+Plugin 'ctrlpvim/ctrlp.vim'
 " " Airline (status bar)
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -78,7 +80,7 @@ endif
 " NERDTree
 nnoremap <Leader>h :NERDTreeToggle<esc>
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeIgnore = ['\.pyc$', '\.hi', '\.o', '\.pdf', '\.taghl', '.ycm_extra_conf.py']
 let NERDTreeShowHidden=1
 
@@ -157,7 +159,8 @@ let g:tex_flavor = "latex"
 " }}}
 
 " General options {{{
-set number
+set relativenumber
+" set number
 set ruler
 syntax on
 filetype plugin indent on
@@ -168,6 +171,7 @@ set backspace=indent,eol,start
 set modelines=0
 set laststatus=2
 set showcmd
+set clipboard=unnamedplus
 if v:version > 703
   set undofile
   set undoreload=10000
