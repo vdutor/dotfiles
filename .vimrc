@@ -227,7 +227,7 @@ set showmatch
 " }}}
 
 " Change paranthis matching color {{{
- hi MatchParen cterm=bold ctermbg=none ctermfg=none
+ hi MatchParen cterm=bold ctermbg=none ctermfg=blue
 " }}}
 
 " Backups and undo {{{
