@@ -1,0 +1,20 @@
+call plug#begin('~/.vim/plugged')
+
+" " File explorer
+Plug 'scrooloose/nerdtree'
+" " Ctrl-p (Fuzzy file search)
+Plug 'ctrlpvim/ctrlp.vim'
+" " Airline (status bar)
+Plug 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
+" " Easy commenting out
+Plug 'tpope/vim-commentary'
+" " Color schemes
+Plug 'flazz/vim-colorschemes'
+Plug 'arcticicestudio/nord-vim'
+" " Autocompletion
+Plug 'Valloric/YouCompleteMe'
+" " Syntax error reporting
+Plug 'scrooloose/syntastic'
+
+call plug#end()
