@@ -20,6 +20,7 @@ Plugin 'tpope/vim-commentary'
 " " Color schemes
 Plugin 'chriskempson/base16-vim'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'arcticicestudio/nord-vim'
 " " Tag highlighting
 Plugin 'vim-scripts/TagHighlight'
 " " Tag listing
@@ -29,7 +30,7 @@ Plugin 'Valloric/YouCompleteMe'
 " " Syntax error reporting
 Plugin 'scrooloose/syntastic'
 " " Close parenthesis, brackets, etc
-Plugin 'jiangmiao/auto-pairs'
+" Plugin 'jiangmiao/auto-pairs'
 " " Multiple cursor selection
 Plugin 'terryma/vim-multiple-cursors'
 " " Smooth scrolling
@@ -40,6 +41,7 @@ Plugin 'KabbAmine/zeavim.vim'
 Plugin 'octol/vim-cpp-enhanced-highlight',{'for': 'cpp'}
 Plugin 'davidhalter/jedi-vim',            " Python
 Plugin 'lervag/vimtex',                   " Latex
+Plugin 'kristijanhusak/vim-carbon-now-sh'
 " " }}}
 
 call vundle#end()            " required
@@ -91,7 +93,27 @@ let NERDTreeShowHidden=1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'lucius'
+let g:airline_theme = 'nord'
+
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 
 " Syntastic
 nnoremap <F4> :SyntasticToggleMode<CR>
@@ -188,7 +210,7 @@ set scrolloff=8 "keep 8 lines below/above cursor
 set t_Co=256
 let base16colorspace=256
 set background=dark
-colorscheme iceberg
+colorscheme nord
 "syntax enable
 
 " Some extra highlighting
