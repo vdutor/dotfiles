@@ -6,11 +6,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 " " Airline (status bar)
 Plug 'vim-airline/vim-airline'
-" Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'
 " " Easy commenting out
 Plug 'tpope/vim-commentary'
 " " Color schemes
 Plug 'flazz/vim-colorschemes'
+" " Nord
 Plug 'arcticicestudio/nord-vim'
 " " Autocompletion
 Plug 'Valloric/YouCompleteMe'

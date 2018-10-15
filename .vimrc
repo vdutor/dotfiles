@@ -24,6 +24,7 @@ set pastetoggle=<F2>
 let mapleader="\<Space>"
 let maplocalleader="\<Space>"
 
+
 " Uncomment below to set the max textwidth. Use a value corresponding to the width of your screen.
 set textwidth=120
 set formatoptions=tcqrn1
@@ -112,7 +113,14 @@ if filereadable(expand("~/.vimrc.plug"))
   source ~/.vimrc.plug
 endif
 
+colorscheme nord
+
+" Airline
+let g:airline_theme = 'nord'
+
 " Syntastic
+nnoremap <F4> :SyntasticToggleMode<CR>
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -121,3 +129,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" NERDTree
+nnoremap <Leader>h :NERDTreeToggle<esc>
+autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let NERDTreeIgnore = ['\.pyc$', '\.hi', '\.o', '\.pdf', '\.taghl', '.ycm_extra_conf.py']
+let NERDTreeShowHidden=1
