@@ -1,5 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
+" " Completion
+" " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " " File explorer
 Plug 'scrooloose/nerdtree'
 " " Ctrl-p (Fuzzy file search)
